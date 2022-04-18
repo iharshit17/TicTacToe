@@ -28,14 +28,20 @@ public class GameManager : MonoBehaviour
             {
                 if (count % 2 == 0)
                 {
-                    item.GetComponentInChildren<Text>().text = "X";
-                    count++;
+                    if (string.IsNullOrEmpty(item.GetComponentInChildren<Text>().text))
+                    {
+                        item.GetComponentInChildren<Text>().text = "X";
+                        count++;
+                    }
                     break;
                 }
                 else
                 {
-                    item.GetComponentInChildren<Text>().text = "O";
-                    count--;
+                    if (string.IsNullOrEmpty(item.GetComponentInChildren<Text>().text))
+                    {
+                        item.GetComponentInChildren<Text>().text = "O";
+                        count--;
+                    }
                     break;
                 }
             }
@@ -70,7 +76,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (var item in buttons)
                 item.interactable = false;
-            
+
             yield return new WaitForSeconds(2);
 
             foreach (var item in buttons)
